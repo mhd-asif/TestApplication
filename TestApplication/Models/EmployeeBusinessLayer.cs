@@ -37,5 +37,12 @@ namespace TestApplication.Models
             return employees;
             */
         }
+
+        public void SaveEmployee(Employee e)
+        {
+            SalesERPDAL salesDAL = new SalesERPDAL();
+            salesDAL.Employees.Add(e);
+            salesDAL.SaveChanges();
+        }
     }
 }

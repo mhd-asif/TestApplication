@@ -11,7 +11,7 @@ namespace TestApplication.Controllers
     public class EmployeeController : Controller
     {
         // GET: Test
-        public String GetString()
+        public string GetString()
         {
             return "Hello World is old now. It&rsquo;s time for wassup bro ;)";
         }
@@ -59,9 +59,30 @@ namespace TestApplication.Controllers
             return View("CreateEmployee");
         }
 
-        public string SaveEmployee(Employee e)
+        public ActionResult SaveEmployee(Employee e, string BtnSubmit)
         {
-            return e.FirstName + " " + e.LastName + "<br /> Salary: " + e.Salary;
+            switch (BtnSubmit)
+            {
+                case "Save Employee":
+                    if (ModelState.IsValid)
+                    {
+                        //return Content(e.FirstName + " " + e.LastName + "<br /> Salary: " + e.Salary);
+                        EmployeeBusinessLayer empBL = new EmployeeBusinessLayer();
+                        empBL.SaveEmployee(e);
+
+                        return RedirectToAction("Index");
+                    }
+
+                    else
+                    {
+                        return View("CreateEmployee");
+                    }          
+
+                case "Cancel":
+                    return RedirectToAction("Index");
+            }
+
+            return new EmptyResult();
         }
     }
 }
