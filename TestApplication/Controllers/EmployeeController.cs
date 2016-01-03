@@ -53,6 +53,11 @@ namespace TestApplication.Controllers
             lvmEmp.Employees = vmEmployees;
             lvmEmp.UserName = User.Identity.Name;
 
+            //Add Footer's information too
+            lvmEmp.FooterData = new FooterViewModel();
+            lvmEmp.FooterData.CompnayName = "ASIF";
+            lvmEmp.FooterData.Year = DateTime.Now.Year.ToString();
+
             return View("Index", lvmEmp);
         }
 

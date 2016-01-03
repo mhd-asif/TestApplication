@@ -19,17 +19,24 @@ namespace TestApplication.Controllers
         [HttpPost]
         public ActionResult DoLogin(UserDetails u)
         {
-            EmployeeBusinessLayer empBLayer  = new EmployeeBusinessLayer();
-
-            if (empBLayer.IsValidUser(u))
+            if (ModelState.IsValid)
             {
-                FormsAuthentication.SetAuthCookie(u.UserName, false);
-                return RedirectToAction("Index", "Employee");
-            }
+                EmployeeBusinessLayer empBLayer = new EmployeeBusinessLayer();
 
+                if (empBLayer.IsValidUser(u))
+                {
+                    FormsAuthentication.SetAuthCookie(u.UserName, false);
+                    return RedirectToAction("Index", "Employee");
+                }
+
+                else
+                {
+                    ModelState.AddModelError("CredentialError", "Invalid username or password");
+                    return View("LogIn");
+                }
+            }
             else
             {
-                ModelState.AddModelError("CredentialError", "Invalid username or password");
                 return View("LogIn");
             }
         }

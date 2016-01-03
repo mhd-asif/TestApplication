@@ -28,15 +28,19 @@
                 <th>Salary</th>
             </tr>
 
-            @foreach(EmployeeViewModel item in Model.Employees)
+            @foreach (EmployeeViewModel item in Model.Employees)
             {
                 <tr>
                     <td>@item.EmployeeName</td>
-                    <td style="background-color:@item.SalaryColor">@item.Salary</td>
+                    <td style="background-color: @item.SalaryColor">@item.Salary</td>
                 </tr>
             }
 
         </table>
+
+        @{
+            Html.RenderPartial("Footer", Model.FooterData);
+        }
     </div>
 
 </body>
