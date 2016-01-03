@@ -16,7 +16,7 @@ namespace TestApplication.Models
         public string FirstName { get; set; }
         [StringLength(5, ErrorMessage = "Last Name total characters should not be greater than 5")]
         public string LastName { get; set; }
-        public int Salary { get; set; }
+        public int? Salary { get; set; }
 
     }
 

@@ -40,7 +40,7 @@ namespace TestApplication.Controllers
                 EmployeeViewModel vmEmp = new EmployeeViewModel();
 
                 vmEmp.EmployeeName = emp.FirstName + " " + emp.LastName;
-                vmEmp.Salary = emp.Salary.ToString("C");
+                vmEmp.Salary = emp.Salary.ToString();
 
                 if (emp.Salary > 1500) vmEmp.SalaryColor = "yellow";
                 else vmEmp.SalaryColor = "green";
@@ -56,7 +56,7 @@ namespace TestApplication.Controllers
 
         public ActionResult AddNew()
         {
-            return View("CreateEmployee");
+            return View("CreateEmployee", new CreateEmployeeViewModel());
         }
 
         public ActionResult SaveEmployee(Employee e, string BtnSubmit)
@@ -75,7 +75,20 @@ namespace TestApplication.Controllers
 
                     else
                     {
-                        return View("CreateEmployee");
+                        CreateEmployeeViewModel vm = new CreateEmployeeViewModel();
+
+                        vm.FirstName = e.FirstName;
+                        vm.LastName = e.LastName;
+
+                        if (e.Salary.HasValue)
+                        {
+                            vm.Salary = e.Salary.ToString();
+                        }
+                        else
+                        {
+                            vm.Salary = ModelState["Salary"].Value.AttemptedValue;
+                        }
+                        return View("CreateEmployee", vm);
                     }          
 
                 case "Cancel":
