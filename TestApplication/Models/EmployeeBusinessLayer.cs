@@ -44,5 +44,17 @@ namespace TestApplication.Models
             salesDAL.Employees.Add(e);
             salesDAL.SaveChanges();
         }
+
+        public bool IsValidUser(UserDetails u)
+        {
+            if (u.UserName == "Admin" && u.Password == "Admin")
+            {
+                return true;
+            }
+            else
+            {
+                return false;          
+            }
+        }
     }
 }

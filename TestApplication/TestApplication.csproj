@@ -128,6 +128,7 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Controllers\AuthenticationController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\EmployeeController.cs" />
     <Compile Include="DataAccessLayer\SalesERPDAL.cs" />
@@ -136,6 +137,7 @@
     </Compile>
     <Compile Include="Models\Employee.cs" />
     <Compile Include="Models\EmployeeBusinessLayer.cs" />
+    <Compile Include="Models\UserDetails.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ViewModels\CreateEmployeeViewModel.cs" />
     <Compile Include="ViewModels\EmployeeListViewModel.cs" />
@@ -179,6 +181,7 @@
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Employee\Index.cshtml" />
     <Content Include="Views\Employee\CreateEmployee.cshtml" />
+    <Content Include="Views\Authentication\LogIn.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

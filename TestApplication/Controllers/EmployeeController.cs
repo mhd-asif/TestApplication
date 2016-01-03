@@ -16,6 +16,7 @@ namespace TestApplication.Controllers
             return "Hello World is old now. It&rsquo;s time for wassup bro ;)";
         }
 
+        [Authorize]
         public ActionResult Index()
         {
             //Employee emp = new Employee();
@@ -50,6 +51,7 @@ namespace TestApplication.Controllers
 
 
             lvmEmp.Employees = vmEmployees;
+            lvmEmp.UserName = User.Identity.Name;
 
             return View("Index", lvmEmp);
         }
