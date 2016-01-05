@@ -18,6 +18,7 @@ namespace TestApplication.Controllers
         }
 
         [Authorize]
+        [HeaderFooterFilter]
         public ActionResult Index()
         {
             //Employee emp = new Employee();
@@ -52,12 +53,12 @@ namespace TestApplication.Controllers
 
 
             lvmEmp.Employees = vmEmployees;
-            lvmEmp.UserName = User.Identity.Name;
+//            lvmEmp.UserName = User.Identity.Name;
 
             //Add Footer's information too
-            lvmEmp.FooterData = new FooterViewModel();
-            lvmEmp.FooterData.CompnayName = "ASIF";
-            lvmEmp.FooterData.Year = DateTime.Now.Year.ToString();
+//            lvmEmp.FooterData = new FooterViewModel();
+//            lvmEmp.FooterData.CompnayName = "ASIF";
+//            lvmEmp.FooterData.Year = DateTime.Now.Year.ToString();
 
             return View("Index", lvmEmp);
         }
@@ -76,18 +77,20 @@ namespace TestApplication.Controllers
         }
 
         [AdminFilter]
+        [HeaderFooterFilter]
         public ActionResult AddNew()
         {
             CreateEmployeeViewModel createEmpVeiwModel = new CreateEmployeeViewModel();
-            createEmpVeiwModel.FooterData = new FooterViewModel();
-            createEmpVeiwModel.FooterData.CompnayName = "Asif";
-            createEmpVeiwModel.FooterData.Year = DateTime.Now.Year.ToString();
-            createEmpVeiwModel.UserName = User.Identity.Name;
+//            createEmpVeiwModel.FooterData = new FooterViewModel();
+//            createEmpVeiwModel.FooterData.CompnayName = "Asif";
+//            createEmpVeiwModel.FooterData.Year = DateTime.Now.Year.ToString();
+//            createEmpVeiwModel.UserName = User.Identity.Name;
 
             return View("CreateEmployee", createEmpVeiwModel);
         }
 
         [AdminFilter]
+        [HeaderFooterFilter]
         public ActionResult SaveEmployee(Employee e, string BtnSubmit)
         {
             switch (BtnSubmit)
@@ -119,10 +122,10 @@ namespace TestApplication.Controllers
                         }
 
                         //Add Hear & Footer
-                        vm.FooterData = new FooterViewModel();
-                        vm.FooterData.CompnayName = "Asif";
-                        vm.FooterData.Year = DateTime.Now.Year.ToString();
-                        vm.UserName = User.Identity.Name;
+//                        vm.FooterData = new FooterViewModel();
+//                        vm.FooterData.CompnayName = "Asif";
+//                        vm.FooterData.Year = DateTime.Now.Year.ToString();
+//                        vm.UserName = User.Identity.Name;
                         return View("CreateEmployee", vm);
                     }          
 
