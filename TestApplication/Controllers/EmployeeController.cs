@@ -78,7 +78,13 @@ namespace TestApplication.Controllers
         [AdminFilter]
         public ActionResult AddNew()
         {
-            return View("CreateEmployee", new CreateEmployeeViewModel());
+            CreateEmployeeViewModel createEmpVeiwModel = new CreateEmployeeViewModel();
+            createEmpVeiwModel.FooterData = new FooterViewModel();
+            createEmpVeiwModel.FooterData.CompnayName = "Asif";
+            createEmpVeiwModel.FooterData.Year = DateTime.Now.Year.ToString();
+            createEmpVeiwModel.UserName = User.Identity.Name;
+
+            return View("CreateEmployee", createEmpVeiwModel);
         }
 
         [AdminFilter]
@@ -111,6 +117,12 @@ namespace TestApplication.Controllers
                         {
                             vm.Salary = ModelState["Salary"].Value.AttemptedValue;
                         }
+
+                        //Add Hear & Footer
+                        vm.FooterData = new FooterViewModel();
+                        vm.FooterData.CompnayName = "Asif";
+                        vm.FooterData.Year = DateTime.Now.Year.ToString();
+                        vm.UserName = User.Identity.Name;
                         return View("CreateEmployee", vm);
                     }          
 

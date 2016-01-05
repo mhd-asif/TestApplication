@@ -2,26 +2,22 @@
 @model EmployeeListViewModel
 
 @{
-    Layout = null;
+    Layout = "~/Views/Shared/MyLayout.cshtml";
 }
 
 <!DOCTYPE html>
 
-<html>
-<head>
-    <meta name="viewport" content="width=device-width" />
-    <title>Index</title>
-</head>
+@section TitleSection {
+    MyView
+}
 
-<body>
+@section ContentBody {
 
-    <div style="text-align:right"> Hello, @Model.UserName </div>
-    <a href="~/Authentication/SignOut">Sign Out</a>
-<hr/>
-    @{
-        Html.RenderAction("GetAddNewLink");
-    }
     <div>
+        @{
+            Html.RenderAction("GetAddNewLink");
+        }
+
         <table border="1">
             <tr>
                 <th>Employee Name</th>
@@ -37,12 +33,7 @@
             }
 
         </table>
-
-        @{
-            Html.RenderPartial("Footer", Model.FooterData);
-        }
     </div>
 
-</body>
 
-</html>
+}
