@@ -22,18 +22,26 @@ namespace TestApplication.Controllers
             if (ModelState.IsValid)
             {
                 EmployeeBusinessLayer empBLayer = new EmployeeBusinessLayer();
+                UserStatus status = empBLayer.GetUserValidity(u);
+                bool isAdmin = false;
 
-                if (empBLayer.IsValidUser(u))
+                if (status == UserStatus.AuthenticatedAdmin)
                 {
-                    FormsAuthentication.SetAuthCookie(u.UserName, false);
-                    return RedirectToAction("Index", "Employee");
+                    isAdmin = true;                  
                 }
-
+                else if (status == UserStatus.AuthenticatedUser)
+                {
+                    isAdmin = false;
+                }
                 else
                 {
                     ModelState.AddModelError("CredentialError", "Invalid username or password");
                     return View("LogIn");
                 }
+
+                FormsAuthentication.SetAuthCookie(u.UserName, false);
+                Session["IsAdmin"] = isAdmin;
+                return RedirectToAction("Index", "Employee");
             }
             else
             {

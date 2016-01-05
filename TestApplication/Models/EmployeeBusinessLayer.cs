@@ -45,15 +45,19 @@ namespace TestApplication.Models
             salesDAL.SaveChanges();
         }
 
-        public bool IsValidUser(UserDetails u)
+        public UserStatus GetUserValidity(UserDetails u)
         {
             if (u.UserName == "Admin" && u.Password == "Admin")
             {
-                return true;
+                return UserStatus.AuthenticatedAdmin;
+            }
+            else if (u.UserName == "Asif" && u.Password == "Asif")
+            {
+                return UserStatus.AuthenticatedUser;          
             }
             else
             {
-                return false;          
+                return UserStatus.NonAuthenticatedUser;
             }
         }
     }
